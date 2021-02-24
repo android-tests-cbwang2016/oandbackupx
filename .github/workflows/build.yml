@@ -42,7 +42,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: ${{ github.sha }}
+          tag_name: ${{ steps.slug.outputs.sha8 }}
           release_name: Release ${{ steps.slug.outputs.sha8 }}
       - uses: r0adkll/sign-android-release@v1
         name: Sign app APK
