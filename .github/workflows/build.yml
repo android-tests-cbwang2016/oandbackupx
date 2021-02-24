@@ -33,6 +33,9 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: apk  
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -40,7 +43,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
           tag_name: ${{ github.sha }}
-          release_name: Release ${{ github.ref }} 
+          release_name: Release ${{ steps.slug.outputs.sha8 }}
       - name: Upload Release APK
         id: upload_release_asset
         uses: actions/upload-release-asset@v1.0.1
