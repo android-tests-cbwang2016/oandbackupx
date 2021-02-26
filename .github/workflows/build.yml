@@ -64,5 +64,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{steps.sign_app.outputs.signedReleaseFile}}
-          asset_name: app-release.apk
+          asset_name: ${{ github.event.repository.name }}-${{ steps.slug.outputs.sha8 }}.apk
           asset_content_type: application/zip
